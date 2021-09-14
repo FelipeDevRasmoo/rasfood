@@ -68,6 +68,14 @@ public class Cardapio {
         this.valor = valor;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     public LocalDateTime getDataDeRegistro() {
         return dataDeRegistro;
     }
@@ -84,6 +92,7 @@ public class Cardapio {
                 ", descricao='" + descricao + '\'' +
                 ", disponivel=" + disponivel +
                 ", valor=" + valor +
+                ", categoria=" + categoria +
                 ", dataDeRegistro=" + dataDeRegistro +
                 '}';
     }
