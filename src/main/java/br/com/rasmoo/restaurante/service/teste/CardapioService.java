@@ -13,9 +13,9 @@ import java.math.BigDecimal;
 public class CardapioService {
     public static void main(String[] args) {
         EntityManager entityManager = JPAUtil.getEntityManagerRasFood();
-//        entityManager.getTransaction().begin();
-        CargaDeDadosUtil.cadastarCategorias();
-        CargaDeDadosUtil.cadastrarProdutosCardapio();
-//        entityManager.close();
+        entityManager.getTransaction().begin();
+        CargaDeDadosUtil.cadastarCategorias(entityManager);
+        CargaDeDadosUtil.cadastrarProdutosCardapio(entityManager);
+        entityManager.close();
     }
 }

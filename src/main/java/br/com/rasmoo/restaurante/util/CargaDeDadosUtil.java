@@ -11,29 +11,29 @@ import java.util.List;
 
 public class CargaDeDadosUtil {
 
-    private static final EntityManager ENTITY_MANAGER = JPAUtil.getEntityManagerRasFood();
-    private static final CategoriaDao CATEGORIA_DAO = new CategoriaDao(ENTITY_MANAGER);
-    private static final CardapioDao CARDAPIO_DAO = new CardapioDao(ENTITY_MANAGER);
-
     private CargaDeDadosUtil(){}
 
-    public static void cadastarCategorias() {
+    public static void cadastarCategorias(EntityManager entityManager) {
         Categoria entrada = new Categoria("Entradas");
         Categoria salada = new Categoria("Saladas");
         Categoria principal = new Categoria("Pratos Principais");
 
-        ENTITY_MANAGER.getTransaction().begin();
-        CATEGORIA_DAO.cadastrar(entrada);
-        ENTITY_MANAGER.flush();
-        CATEGORIA_DAO.cadastrar(salada);
-        ENTITY_MANAGER.flush();
-        CATEGORIA_DAO.cadastrar(principal);
-        ENTITY_MANAGER.flush();
-        ENTITY_MANAGER.clear();
+        CategoriaDao categoriaDao = new CategoriaDao(entityManager);
+
+        categoriaDao.cadastrar(entrada);
+        entityManager.flush();
+        categoriaDao.cadastrar(salada);
+        entityManager.flush();
+        categoriaDao.cadastrar(principal);
+        entityManager.flush();
+        entityManager.clear();
     }
 
-    public static void cadastrarProdutosCardapio() {
-        List<Categoria> categorias = CATEGORIA_DAO.consultarTodos();
+    public static void cadastrarProdutosCardapio(EntityManager entityManager) {
+        CategoriaDao categoriaDao = new CategoriaDao(entityManager);
+        CardapioDao cardapioDao = new CardapioDao(entityManager);
+
+        List<Categoria> categorias = categoriaDao.consultarTodos();
         Cardapio moqueca = new Cardapio("Moqueca", "Peixe branco, banana da terra, arroz e farofa",
                 true, BigDecimal.valueOf(95.00), categorias.get(2));
         Cardapio spaguetti = new Cardapio("Spaguetti", "Spagatti ao molho de parmesão e cogumelos",
@@ -55,17 +55,17 @@ public class CargaDeDadosUtil {
         Cardapio chevre = new Cardapio("Chevre", "Mix de folhas, mostarda e mel",
                 true, BigDecimal.valueOf(50.00), categorias.get(1));
 
-        CARDAPIO_DAO.cadastrar(moqueca);
-        CARDAPIO_DAO.cadastrar(spaguetti);
-        CARDAPIO_DAO.cadastrar(bife);
-        CARDAPIO_DAO.cadastrar(cordeiro);
-        CARDAPIO_DAO.cadastrar(burrata);
-        CARDAPIO_DAO.cadastrar(bruschetta);
-        CARDAPIO_DAO.cadastrar(scappeta);
-        CARDAPIO_DAO.cadastrar(caprese);
-        CARDAPIO_DAO.cadastrar(caesar);
-        CARDAPIO_DAO.cadastrar(chevre);
-        ENTITY_MANAGER.getTransaction().commit();
-        ENTITY_MANAGER.close();
+        cardapioDao.cadastrar(moqueca);
+        cardapioDao.cadastrar(spaguetti);
+        cardapioDao.cadastrar(bife);
+        cardapioDao.cadastrar(cordeiro);
+        cardapioDao.cadastrar(burrata);
+        cardapioDao.cadastrar(bruschetta);
+        cardapioDao.cadastrar(scappeta);
+        cardapioDao.cadastrar(caprese);
+        cardapioDao.cadastrar(caesar);
+        cardapioDao.cadastrar(chevre);
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 }
