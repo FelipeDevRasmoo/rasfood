@@ -53,7 +53,7 @@ public class CargaDeDadosUtil {
         Cardapio caesar = new Cardapio("Caesar", "Salada de franco com molho ceasar",
                 true, BigDecimal.valueOf(40.00), categorias.get(1));
         Cardapio chevre = new Cardapio("Chevre", "Mix de folhas, mostarda e mel",
-                true, BigDecimal.valueOf(50.00), categorias.get(1));
+                true, BigDecimal.valueOf(59.00), categorias.get(1));
 
         cardapioDao.cadastrar(moqueca);
         cardapioDao.cadastrar(spaguetti);
@@ -66,6 +66,6 @@ public class CargaDeDadosUtil {
         cardapioDao.cadastrar(caesar);
         cardapioDao.cadastrar(chevre);
         entityManager.getTransaction().commit();
-        entityManager.close();
+        entityManager.clear();
     }
 }
