@@ -25,6 +25,7 @@ public class OrdensCardapio {
         this.ordem = ordem;
         this.cardapio = cardapio;
         this.quantidade = quantidade;
+        this.valor = cardapio.getValor();
     }
 
     public OrdensCardapio() {
