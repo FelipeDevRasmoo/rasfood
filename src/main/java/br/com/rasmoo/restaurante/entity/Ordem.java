@@ -23,7 +23,7 @@ public class Ordem {
     @ManyToOne
     private Cliente cliente;
 
-    @OneToMany()
+    @OneToMany
     private List<OrdensCardapio> ordensCardapioList;
 
     public Ordem(Cliente cliente) {
