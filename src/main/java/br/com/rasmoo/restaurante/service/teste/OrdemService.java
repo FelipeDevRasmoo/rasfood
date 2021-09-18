@@ -30,7 +30,7 @@ public class OrdemService {
         ordem.addOrdensCardapio(new OrdensCardapio(cardapioDao.consultarPorId(1),2));
         clienteDao.cadastrar(felipe);
         ordemDao.cadastrar(ordem);
-        System.out.println(ordem.getOrdensCardapioList());
+        System.out.println(ordem);
         entityManager.getTransaction().commit();
         entityManager.close();
     }

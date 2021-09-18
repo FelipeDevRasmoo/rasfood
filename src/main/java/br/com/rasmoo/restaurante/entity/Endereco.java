@@ -31,6 +31,9 @@ public class Endereco {
         this.estado = estado;
     }
 
+    public Endereco() {
+    }
+
     public Integer getId() {
         return id;
     }
