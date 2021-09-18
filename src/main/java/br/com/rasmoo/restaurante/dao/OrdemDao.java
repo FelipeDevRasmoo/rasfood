@@ -23,7 +23,7 @@ public class OrdemDao {
     }
 
     public List<Ordem> consultarTodos() {
-        String jpql = "SELECT c FROM Ordem c";
+        String jpql = "SELECT o FROM Ordem o";
         return this.entityManager.createQuery(jpql,Ordem.class).getResultList();
     }
 
