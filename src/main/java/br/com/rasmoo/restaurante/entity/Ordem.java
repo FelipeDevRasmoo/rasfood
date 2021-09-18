@@ -24,7 +24,15 @@ public class Ordem {
     @ManyToOne
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "ordem")
+    /*
+    * ALL = Realiza todas as operações em cascata
+    * DETACH = Operacao detach executada no pai e no filho
+    * MERGE = Salva pai e filho, podende já haver a entidade gerenciada
+    * PERSIST = Cria pai e filho
+    * REFRESH = Atualiza entidade com operacoes do banco
+    * REMOVE = Propaga remocao entre pai e filho
+    * */
+    @OneToMany(mappedBy = "ordem",cascade = CascadeType.ALL)
     private List<OrdensCardapio> ordensCardapioList = new ArrayList<>();
 
     public Ordem(Cliente cliente) {
@@ -69,6 +77,14 @@ public class Ordem {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public List<OrdensCardapio> getOrdensCardapioList() {
+        return ordensCardapioList;
+    }
+
+    public void setOrdensCardapioList(List<OrdensCardapio> ordensCardapioList) {
+        this.ordensCardapioList = ordensCardapioList;
     }
 
     @Override
