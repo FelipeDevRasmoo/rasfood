@@ -16,7 +16,7 @@ public class Ordem {
     private Integer id;
 
     @Column(name = "valor_total")
-    private BigDecimal valorTotal;
+    private BigDecimal valorTotal = BigDecimal.ZERO;
 
     @Column(name = "data_de_criacao")
     private LocalDateTime dataDeCriacao = LocalDateTime.now();
@@ -25,14 +25,14 @@ public class Ordem {
     private Cliente cliente;
 
     /*
-    * ALL = Realiza todas as operações em cascata
-    * DETACH = Operacao detach executada no pai e no filho
-    * MERGE = Salva pai e filho, podende já haver a entidade gerenciada
-    * PERSIST = Cria pai e filho
-    * REFRESH = Atualiza entidade com operacoes do banco
-    * REMOVE = Propaga remocao entre pai e filho
-    * */
-    @OneToMany(mappedBy = "ordem",cascade = CascadeType.ALL)
+     * ALL = Realiza todas as operações em cascata
+     * DETACH = Operacao detach executada no pai e no filho
+     * MERGE = Salva pai e filho, podende já haver a entidade gerenciada
+     * PERSIST = Cria pai e filho
+     * REFRESH = Atualiza entidade com operacoes do banco
+     * REMOVE = Propaga remocao entre pai e filho
+     * */
+    @OneToMany(mappedBy = "ordem", cascade = CascadeType.ALL)
     private List<OrdensCardapio> ordensCardapioList = new ArrayList<>();
 
     public Ordem(Cliente cliente) {
@@ -42,9 +42,11 @@ public class Ordem {
     public Ordem() {
     }
 
-    public void addOrdensCardapio(OrdensCardapio ordensCardapio){
+    public void addOrdensCardapio(OrdensCardapio ordensCardapio) {
         ordensCardapio.setOrdem(this);
         this.ordensCardapioList.add(ordensCardapio);
+        this.valorTotal = valorTotal.add(ordensCardapio.getValorDeRegistro()
+                .multiply(BigDecimal.valueOf(ordensCardapio.getQuantidade())));
     }
 
     public Integer getId() {
