@@ -18,20 +18,12 @@ public class OrdemService {
         entityManager.getTransaction().begin();
         CargaDeDadosUtil.cadastarCategorias(entityManager);
         CargaDeDadosUtil.cadastrarProdutosCardapio(entityManager);
-
-        CardapioDao cardapioDao = new CardapioDao(entityManager);
-        ClienteDao clienteDao = new ClienteDao(entityManager);
+        CargaDeDadosUtil.cadastrarClientes(entityManager);
+        CargaDeDadosUtil.cadastrarOrdensClientes(entityManager);
         OrdemDao ordemDao = new OrdemDao(entityManager);
 
-        Endereco endereco = new Endereco("000000000","sem teto","apto 1001","Sao Paulo","SP");
-        Cliente felipe = new Cliente("111111111111","Felipe");
-        felipe.addEndereco(endereco);
-        Ordem ordem = new Ordem(felipe);
-        ordem.addOrdensCardapio(new OrdensCardapio(cardapioDao.consultarPorId(1),2));
-        ordem.addOrdensCardapio(new OrdensCardapio(cardapioDao.consultarPorId(2),3));
-        clienteDao.cadastrar(felipe);
-        ordemDao.cadastrar(ordem);
-        System.out.println(ordem);
+
+        System.out.println(ordemDao.consultarTodos());
         entityManager.getTransaction().commit();
         entityManager.close();
     }
