@@ -27,6 +27,15 @@ public class OrdemDao {
         return this.entityManager.createQuery(jpql,Ordem.class).getResultList();
     }
 
+    public List<Object[]> consultarItensMaisVendidos(){
+        String jpql = "SELECT c.nome, SUM(oc.quantidade) FROM Ordem o " +
+                "JOIN OrdensCardapio oc on o.id = oc.cardapio.id " +
+                "JOIN oc.cardapio c " +
+                "GROUP BY c.nome " +
+                "ORDER BY SUM(oc.quantidade) DESC";
+        return this.entityManager.createQuery(jpql,Object[].class).getResultList();
+    }
+
     public void atualizar(final Ordem ordem){
         this.entityManager.merge(ordem);
     }
