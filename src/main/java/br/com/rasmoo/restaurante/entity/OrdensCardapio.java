@@ -11,10 +11,10 @@ public class OrdensCardapio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Ordem ordem;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cardapio cardapio;
 
     @Column(name = "valor_de_registro")
