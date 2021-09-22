@@ -16,9 +16,9 @@ public class OrdemService {
         CargaDeDadosUtil.cadastrarClientes(entityManager);
         CargaDeDadosUtil.cadastrarOrdensClientes(entityManager);
         OrdemDao ordemDao = new OrdemDao(entityManager);
-        Ordem ordem = ordemDao.consultarPorId(2);
-        System.out.println(ordem.getOrdensCardapioList().isEmpty());
+        Ordem ordem = ordemDao.joinFetchCliente(2);
         entityManager.getTransaction().commit();
         entityManager.close();
+        System.out.println(ordem.getCliente().getNome());
     }
 }
