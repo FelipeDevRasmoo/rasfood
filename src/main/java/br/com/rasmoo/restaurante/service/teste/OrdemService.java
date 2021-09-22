@@ -1,7 +1,7 @@
 package br.com.rasmoo.restaurante.service.teste;
 
-import br.com.rasmoo.restaurante.dao.OrdemDao;
-import br.com.rasmoo.restaurante.entity.Ordem;
+import br.com.rasmoo.restaurante.dao.ClienteDao;
+import br.com.rasmoo.restaurante.entity.Cliente;
 import br.com.rasmoo.restaurante.util.CargaDeDadosUtil;
 import br.com.rasmoo.restaurante.util.JPAUtil;
 
@@ -15,10 +15,9 @@ public class OrdemService {
         CargaDeDadosUtil.cadastrarProdutosCardapio(entityManager);
         CargaDeDadosUtil.cadastrarClientes(entityManager);
         CargaDeDadosUtil.cadastrarOrdensClientes(entityManager);
-        OrdemDao ordemDao = new OrdemDao(entityManager);
-        Ordem ordem = ordemDao.joinFetchCliente(2);
+        ClienteDao clienteDao = new ClienteDao(entityManager);
+        System.out.println(clienteDao.consultarPorNome("COSTA"));
         entityManager.getTransaction().commit();
         entityManager.close();
-        System.out.println(ordem.getCliente().getNome());
     }
 }

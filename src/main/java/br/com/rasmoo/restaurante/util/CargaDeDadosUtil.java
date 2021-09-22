@@ -85,7 +85,7 @@ public class CargaDeDadosUtil {
         calvin.addEndereco(leblon);
 
         Endereco heitorPenteado = new Endereco("000000000","Heitor Penteado","apto 101","Sao Paulo","SP");
-        Cliente tayane = new Cliente("111111111123","Tayane Lopes");
+        Cliente tayane = new Cliente("111111111123","Tayane Lopes Costa");
         tayane.addEndereco(heitorPenteado);
 
         Endereco consolacao = new Endereco("000000000","Consolacao","apto 1001","Sao Paulo","SP");
