@@ -76,7 +76,7 @@ public class CargaDeDadosUtil {
         Cliente felipe = new Cliente("12345678901","Felipe Ribeiro");
         felipe.addEndereco(augusta);
 
-        Endereco rioVermelho = new Endereco("000000001","Rio Vermelho","apto 1001","Salvador","SSA");
+        Endereco rioVermelho = new Endereco("000000001","Rio Vermelho","apto 1001","Salvador","BA");
         Cliente cleber = new Cliente("111111111111","Cleber Machado");
         cleber.addEndereco(rioVermelho);
 
