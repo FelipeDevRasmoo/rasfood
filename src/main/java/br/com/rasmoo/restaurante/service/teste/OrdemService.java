@@ -16,7 +16,7 @@ public class OrdemService {
         CargaDeDadosUtil.cadastrarClientes(entityManager);
         CargaDeDadosUtil.cadastrarOrdensClientes(entityManager);
         EnderecoDao enderecoDao = new EnderecoDao(entityManager);
-        System.out.println(enderecoDao.consultarClientes("SP","Sao Paulo",null));
+        System.out.println(enderecoDao.consultarClientes(null,null,"lapa"));
         entityManager.getTransaction().commit();
         entityManager.close();
     }
