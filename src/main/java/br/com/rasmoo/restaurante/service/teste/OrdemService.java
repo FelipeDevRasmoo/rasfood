@@ -18,6 +18,9 @@ public class OrdemService {
         EnderecoDao enderecoDao = new EnderecoDao(entityManager);
         System.out.println(enderecoDao.consultarClientes(null,null,"lapa"));
         System.out.println(enderecoDao.consultarClientesUsandoCriteria(null,null,"lapa"));
+
+        ClienteDao clienteDao = new ClienteDao(entityManager);
+        System.out.println(clienteDao.consultarTodos());
         entityManager.getTransaction().commit();
         entityManager.close();
     }
