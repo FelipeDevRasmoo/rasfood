@@ -8,8 +8,8 @@ import java.util.List;
 @Table(name = "clientes")
 public class Cliente {
 
-    @Id
-    private String cpf;
+    @EmbeddedId
+    private ClienteId clienteId;
 
     private String nome;
 
@@ -19,8 +19,8 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> enderecoList = new ArrayList<>();
 
-    public Cliente(String cpf, String nome) {
-        this.cpf = cpf;
+    public Cliente(String cpf, String email, String nome) {
+        this.clienteId = new ClienteId(email,cpf);
         this.nome = nome;
     }
 
@@ -33,11 +33,19 @@ public class Cliente {
     }
 
     public String getCpf() {
-        return cpf;
+        return clienteId.getCpf();
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.clienteId.setCpf(cpf);
+    }
+
+    public String getEmail() {
+        return clienteId.getEmail();
+    }
+
+    public void setEmail(String email) {
+        this.clienteId.setEmail(email);
     }
 
     public String getNome() {
@@ -67,7 +75,8 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "cpf='" + cpf + '\'' +
+                "cpf='" + clienteId.getCpf() + '\'' +
+                ", email='" + clienteId.getEmail() + '\'' +
                 ", nome='" + nome + '\'' +
                 ", contato=" + contato +
                 ", enderecoList=" + enderecoList +

@@ -2,6 +2,7 @@ package br.com.rasmoo.restaurante.service.teste;
 
 import br.com.rasmoo.restaurante.dao.ClienteDao;
 import br.com.rasmoo.restaurante.dao.EnderecoDao;
+import br.com.rasmoo.restaurante.entity.ClienteId;
 import br.com.rasmoo.restaurante.util.CargaDeDadosUtil;
 import br.com.rasmoo.restaurante.util.JPAUtil;
 
@@ -20,7 +21,7 @@ public class OrdemService {
         System.out.println(enderecoDao.consultarClientesUsandoCriteria(null,null,"lapa"));
 
         ClienteDao clienteDao = new ClienteDao(entityManager);
-        System.out.println(clienteDao.consultarTodos());
+        System.out.println(clienteDao.consultarPorId(new ClienteId("tayane@email.com","111111111123")));
         entityManager.getTransaction().commit();
         entityManager.close();
     }
