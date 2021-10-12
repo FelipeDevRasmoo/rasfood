@@ -21,7 +21,7 @@ public class OrdemService {
         System.out.println(enderecoDao.consultarClientesUsandoCriteria(null,null,"lapa"));
 
         ClienteDao clienteDao = new ClienteDao(entityManager);
-        System.out.println(clienteDao.consultarPorId(new ClienteId("tayane@email.com","111111111123")));
+        System.out.println(clienteDao.consultarPorNome("Maria"));
         entityManager.getTransaction().commit();
         entityManager.close();
     }
